@@ -41,6 +41,11 @@ SET NOCOUNT ON;
 		SELECT id , book ,author from Books where isDeleted <> 1
 	END
 
+	ELSE IF @type = 'single'
+	BEGIN
+		SELECT id , book ,author from Books where id = @id
+	END
+
 	ELSE IF @type = 'delete'
 	BEGIN
 		UPDATE Books
