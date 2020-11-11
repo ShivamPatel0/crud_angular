@@ -15,26 +15,37 @@ export class CreateBookComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.submitted = false;
+    this.book = new Book();
+    this.book.book = '';
+    this.book.author = '';
   }
 
   newBook(): void {
-    this.submitted = false;
-    this.book = new Book();
+
   }
 
   save() {
     this.bookService
-    .createBook(this.book).subscribe(data => {
-      console.log(data)
-      this.book = new Book();
-      this.gotoList();
-    }, 
-    error => console.log(error));
+      .createBook(this.book).subscribe(data => {
+        console.log(data)
+        this.book = new Book();
+        this.gotoList();
+      },
+        error => console.log(error));
   }
 
   onSubmit() {
-    this.submitted = true;
-    this.save();    
+    if (this.book.book.length == 0) {
+      alert('Please enter book name.')
+    }
+    else if (this.book.author.length == 0) {
+      alert('Please enter author name.')
+    }
+    else {
+      this.submitted = true;
+      this.save();
+    }
   }
 
   gotoList() {

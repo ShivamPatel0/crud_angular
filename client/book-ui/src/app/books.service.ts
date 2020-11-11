@@ -7,7 +7,7 @@ import { catchError, retry, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BooksService {
-  private baseUrl = 'https://localhost:44312/api/books';
+  private baseUrl = 'https://localhost:44349/api/books';
   book: Book[] = [];
   constructor(private http: HttpClient) { }
 
@@ -15,8 +15,8 @@ export class BooksService {
     return this.http.get(`${this.baseUrl}/GetBook/${id}`);
   }
 
-  createBook(employee: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/AddBooks`, employee);
+  createBook(book: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}/AddBooks`, book);
   }
 
   updateBook(id: number, value: any): Observable<Object> {

@@ -25,13 +25,15 @@ export class BookListComponent implements OnInit {
   }
 
   deleteBook(id: number) {
-    this.bookService.deleteBook(id)
+    if(window.confirm('Are you sure you want to delete this record?')){
+      this.bookService.deleteBook(id)
       .subscribe(
         data => {
           console.log(data);
           this.reloadData();
         },
         error => console.log(error));
+    }    
   }
 
   bookDetails(id: number) {
